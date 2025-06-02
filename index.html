@@ -1,62 +1,95 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ares Baba - Giriş</title>
+  <meta charset="UTF-8">
+  <title>Ares Baba</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-
     body {
       margin: 0;
-      background-color: #000;
-      font-family: 'Orbitron', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #ff073a;
+      background: black;
       overflow: hidden;
+      color: white;
+      font-family: monospace;
     }
 
-    .container {
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
     }
 
-    .btn-neon {
-      font-size: 2.5rem;
-      padding: 20px 60px;
-      color: #ff073a;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border: 3px solid #ff073a;
-      border-radius: 10px;
-      background: transparent;
+    img {
+      width: 200px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      background: #00ffcc;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
-      transition: 0.4s ease-in-out;
-      box-shadow:
-        0 0 5px #ff073a,
-        0 0 10px #ff073a,
-        0 0 20px #ff073a,
-        0 0 40px #ff073a;
+      font-size: 18px;
+      transition: 0.3s;
     }
 
-    .btn-neon:hover {
-      color: #fff;
-      background: #ff073a;
-      box-shadow:
-        0 0 10px #ff073a,
-        0 0 20px #ff073a,
-        0 0 30px #ff073a,
-        0 0 60px #ff073a;
-      transition: 0.3s ease-in-out;
+    .btn:hover {
+      background: #00bfa6;
     }
-
   </style>
 </head>
 <body>
-  <div class="container">
-    <button class="btn-neon" onclick="location.href='register.html'">Giriş Yap</button>
+  <canvas id="matrix"></canvas>
+  <div class="center">
+    <img src="ares-photo.jpg" alt="Ares Baba">
+    <br>
+    <button class="btn" onclick="location.href='login.html'">Giriş Yap</button>
   </div>
+
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const chars = "RAKUN ";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#0F0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 33);
+  </script>
 </body>
 </html>
