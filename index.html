@@ -1,18 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ares Baba</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ares Baba - Giriş</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+    body {
+      margin: 0;
+      background-color: #000;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #ff073a;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .btn-neon {
+      font-size: 2.5rem;
+      padding: 20px 60px;
+      color: #ff073a;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border: 3px solid #ff073a;
+      border-radius: 10px;
+      background: transparent;
+      cursor: pointer;
+      transition: 0.4s ease-in-out;
+      box-shadow:
+        0 0 5px #ff073a,
+        0 0 10px #ff073a,
+        0 0 20px #ff073a,
+        0 0 40px #ff073a;
+    }
+
+    .btn-neon:hover {
+      color: #fff;
+      background: #ff073a;
+      box-shadow:
+        0 0 10px #ff073a,
+        0 0 20px #ff073a,
+        0 0 30px #ff073a,
+        0 0 60px #ff073a;
+      transition: 0.3s ease-in-out;
+    }
+
+  </style>
 </head>
 <body>
-  <canvas id="matrix"></canvas>
-  <div class="center-container">
-    <img src="photo.jpg" alt="Ares Baba" class="avatar"/>
-    <a href="#" class="enter-button">Giriş Yap</a>
+  <div class="container">
+    <button class="btn-neon" onclick="location.href='register.html'">Giriş Yap</button>
   </div>
-  <script src="script.js"></script>
 </body>
 </html>
